@@ -5,12 +5,14 @@ public class Client extends User{
 	// class fields
 	private String name;
 	private String email;
+	private String address;
 	private int contactInfo;
 	
 	// constructor
-	public Client (String userName, String password, String name, String email, int contactInfo) {
+	public Client (String userName, String password, String name, String address, String email, int contactInfo) {
 		super(userName, password);
 		this.name = name;
+		this.address = address;
 		this.email = email;
 		this.contactInfo = contactInfo;
 	}
@@ -18,6 +20,10 @@ public class Client extends User{
 	// getters and setters
 	public String getName() {
 		return this.name;
+	}
+	
+	public String getAddress() {
+		return this.address;
 	}
 	
 	public String getEmail() {
@@ -32,6 +38,10 @@ public class Client extends User{
 		this.name = name;
 	}
 	
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -41,14 +51,12 @@ public class Client extends User{
 	}
 	
 	// METHODS
-	public void SignUp(String name, String email, String password, int contactInfo) {
-		
-	}
-	public String SendFeedback(String feedback) {
-		return feedback;
-	}
-	
+	@Override
 	public void DisplayDetails() {
+		System.out.println("Name: " + this.getName());
+		System.out.println("Address: " + this.getAddress());
+		System.out.println("Email: " + this.getEmail());
+		System.out.println("Contact Information: " + this.getContactInfo());
 		
 	}
 }
