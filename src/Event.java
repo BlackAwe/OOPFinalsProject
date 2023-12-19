@@ -26,7 +26,7 @@ public class Event {
 		return this.eventId;
 	}
 	
-	public String eventName() {
+	public String getEventName() {
 		return this.eventName;
 	}
 	
@@ -50,13 +50,23 @@ public class Event {
 		return this.description;
 	}
 	
+	public String getStatus() {
+		return this.status;
+	}
+	
 	// METHODS
 	public void CreateEvent() { // up to the user in how the event is created
 		
 	}
 	
 	public void DisplayEventInfo() {
-		
+		System.out.println(this.getEventName());
+		System.out.println("Event Type:" + this.getType());
+		System.out.println("Event Venue: " + this.getVenue());
+		System.out.println("Date and Time: " + this.getDate());
+		System.out.println("Number of Participants: " + this.getParticipants());
+		System.out.println("Description: " + this.getDescription());
+		System.out.println("Event Status: " + this.getStatus());
 	}
 	
 	public void UpdateEvent() {

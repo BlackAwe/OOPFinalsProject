@@ -1,7 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
 
-
 public class Client extends User{
 	// class fields
 	private String name;
