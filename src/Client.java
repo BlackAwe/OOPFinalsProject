@@ -99,6 +99,6 @@ public class Client extends User{
 	        default:
 	        	System.out.println("Invalid choice");
 	        }
-	        System.out.println("Event details updated successfully!");
+	        System.out.println("Client details updated successfully!");
 	}
 }
