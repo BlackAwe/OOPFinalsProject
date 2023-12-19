@@ -15,7 +15,4 @@ public class Payment {
 		
 	}
 	
-	public void ShowReceipt() {
-		
-	}
 }
