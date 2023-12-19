@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class User {
 	// class fields
@@ -27,8 +28,6 @@ public class User {
 	}
 	
 	// METHODS
-	// METHODS
-
 	//Compares the entered userName and password with the stored values
 
 	public boolean LogIn(String userName, String password) {
@@ -41,9 +40,19 @@ public class User {
 		}
 	}
 	
+	public void UpdateUserDetails() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter new username: ");
+		String newUsername = scanner.nextLine();
+        this.setUsername(newUsername);
+        System.out.print("Username updated successfully.");
+	}
+	
 	// Method to display details or information of user
 	public void DisplayDetails() {
 	    System.out.println("\\nUser Details:");
 	    System.out.println("Username: " + this.userName);
 	}
+	
+	
 }
