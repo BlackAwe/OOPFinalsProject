@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    	Scanner scanner = new Scanner(System.in);
         boolean isLoggedIn = false;
 
         while (true) {
@@ -17,9 +17,6 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    // Implement Sign-Up Logic
-                    // Prompt user for necessary details and create an account
-                    // ...
                     break;
                 case 2:
                     // Implement Log-In Logic
@@ -39,8 +36,8 @@ public class Main {
                 // Menu for logged-in users
                 while (true) {
                     System.out.println("\nEvent Management Menu:");
-                    System.out.println("1. View Events");
-                    System.out.println("2. Create Event");
+                    System.out.println("1. Create Event");
+                    System.out.println("2. View Events");
                     System.out.println("3. Reserve Event");
                     System.out.println("4. Cancel Reservation");
                     System.out.println("5. Log Out");
@@ -79,7 +76,9 @@ public class Main {
                     }
                 }
             }
+            
         }
+        
     }
 }
 
