@@ -8,6 +8,7 @@ public class Client extends User{
 	private String email;
 	private String address;
 	private String contactInfo;
+	private List<Event> eventList = new ArrayList<Event>();
 	
 	// constructor
 	public Client (String userName, String password, String name, 
@@ -53,6 +54,30 @@ public class Client extends User{
 	}
 	
 	// METHODS
+	public void CreateEvent() { // up to the user in how the event is created
+		Scanner scanner = new Scanner(System.in);
+		
+        System.out.println("\nCreate an Event.");
+        System.out.print("Enter Event ID: ");
+        int eventId = scanner.nextInt();
+        System.out.print("Enter Event Name: ");
+        String eventName = scanner.next();
+        System.out.print("Enter Type of Event: ");
+        String eventType = scanner.next();
+        System.out.print("Enter Date and Time: ");
+        String dateAndTime = scanner.next();
+        System.out.print("Enter Venue: ");
+        String venue = scanner.next();
+        System.out.print("Enter Number of Participants: ");
+        int numOfParticipants = scanner.nextInt();
+        System.out.print("Enter Description: ");
+        String description = scanner.next();    
+
+        Event event = new Event(eventId, eventName, eventType,
+                dateAndTime, venue, numOfParticipants, description);
+        this.eventList.add(event);
+    }
+	
 	@Override
 	public void DisplayDetails() {
 		System.out.println("Name: " + this.getName());
