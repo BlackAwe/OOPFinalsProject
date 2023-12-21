@@ -244,6 +244,7 @@ public class Client extends User {
 				if (userEvent.getEventId() == selectedEventId) {
 					this.eventList.remove(userEvent);
 					System.out.println("The scheduled event is deleted successfully");
+					break;
 				} else {
 					System.out.println("Invalid ID entered. Event does not exist.\n");
 				}
