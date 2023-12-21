@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Client extends User{
 	// class fields
+	private static int lastClientId = 0;
+	private int id;
 	private String name;
 	private String email;
 	private String address;
@@ -14,6 +16,7 @@ public class Client extends User{
 	public Client (String userName, String password, String name, 
 			String address, String email, String contactInfo) {
 		super(userName, password);
+		this.id = ++lastClientId;
 		this.name = name;
 		this.address = address;
 		this.email = email;
@@ -21,6 +24,10 @@ public class Client extends User{
 	}
 	
 	// getters and setters
+	public int getId() {
+		return this.id;
+	}
+	
 	public String getName() {
 		return this.name;
 	}
@@ -58,8 +65,6 @@ public class Client extends User{
 		Scanner scanner = new Scanner(System.in);
 		
         System.out.println("\nCreate an Event.");
-        System.out.print("Enter Event ID: ");
-        int eventId = scanner.nextInt();
         System.out.print("Enter Event Name: ");
         String eventName = scanner.next();
         System.out.print("Enter Type of Event: ");
@@ -73,8 +78,8 @@ public class Client extends User{
         System.out.print("Enter Description: ");
         String description = scanner.next();    
 
-        Event event = new Event(eventId, eventName, eventType,
-                dateAndTime, venue, numOfParticipants, description);
+        Event event = new Event(eventName, eventType, dateAndTime, 
+        		venue, numOfParticipants, description);
         this.eventList.add(event);
     }
 	

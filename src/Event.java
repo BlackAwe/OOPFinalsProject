@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Event {
 	// class fields
+	private static int lastEventId;
 	private int eventId;
 	private String eventName;
 	private String eventType;
@@ -12,9 +13,9 @@ public class Event {
 	private String status;
 	
 	// constructor
-	public Event(int eventId, String eventName, String eventType, String dateAndTime,  
+	public Event(String eventName, String eventType, String dateAndTime,  
 			String venue, int noOfParticipants, String description) {
-		this.eventId = eventId;
+		this.eventId = ++lastEventId;
 		this.eventName = eventName;
 		this.eventType = eventType;
 		this.dateAndTime = dateAndTime;
