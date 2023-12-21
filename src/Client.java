@@ -11,6 +11,7 @@ public class Client extends User {
 	private String address;
 	private String contactInfo;
 	private List<Event> eventList = new ArrayList<Event>();
+	private List<Transaction> transactionHistory = new ArrayList<Transaction>();
 
 	// constructor
 	public Client(String userName, String password, String name, String address, String email, String contactInfo) {
@@ -41,6 +42,10 @@ public class Client extends User {
 
 	public String getContactInfo() {
 		return this.contactInfo;
+	}
+
+	public List<Transaction> getTransactionHistory() {
+		return this.transactionHistory;
 	}
 
 	public void setName(String name) {
@@ -79,6 +84,8 @@ public class Client extends User {
 		Event event = new Event(eventName, eventType, dateAndTime, venue, numOfParticipants, description);
 		this.eventList.add(event);
 		System.out.println("A new event has been scheduled");
+
+		transactionHistory.add(new Transaction("Event Created", "Event: " + eventName));
 	}
 
 	public void SearchEvent(int selectedEventId) {
@@ -89,7 +96,7 @@ public class Client extends User {
 		System.out.println("These are the events that you have scheduled:");
 		if (this.eventList == null) {
 			System.out.println("There is no scheduled events yet.");
-		} else if (this.eventList!= null){
+		} else if (this.eventList != null) {
 			for (Event userEvent : this.eventList) {
 				System.out.println("Event ID: " + userEvent.getEventId() + 
 						" || Event Name: " + userEvent.getEventName());
@@ -156,7 +163,7 @@ public class Client extends User {
 			for (Event userEvent : this.eventList) {
 				System.out.println("Please enter the ID of the event you want to update: ");
 				int selectedEventId = scanner.nextInt();
-				
+
 				if (userEvent.getEventId() == selectedEventId) {
 					System.out.println("What would you like to update?");
 					System.out.println("1. Event Name");
@@ -208,9 +215,10 @@ public class Client extends User {
 				} else {
 					System.out.println("ID not found. Event does not exist.\n");
 				}
+				transactionHistory.add(new Transaction("Event Updated", "Event: " + userEvent.getEventName()));
 				break;
 			}
-		} 
+		}
 	}
 
 	public void ReserveEvent() {
@@ -225,6 +233,8 @@ public class Client extends User {
 					if (userPayment == userEvent.CalculateEventFees()) {
 						System.out.println("The event is now awaiting for confirmation. Thank you");
 						userEvent.setStatus("Awaiting confirmation.");
+						transactionHistory.add(new Transaction("Event Awaiting Reservation", 
+								"Event: " + userEvent.getEventName()));
 					} else {
 						System.out.println("Insufficient amount of payment.");
 					}
@@ -232,7 +242,7 @@ public class Client extends User {
 					System.out.println("Invalid ID. Event does not exist.\n");
 				}
 			}
-		}		
+		}
 	}
 
 	public void CancelEvent() {
@@ -244,6 +254,8 @@ public class Client extends User {
 				if (userEvent.getEventId() == selectedEventId) {
 					this.eventList.remove(userEvent);
 					System.out.println("The scheduled event is deleted successfully");
+					transactionHistory.add(new Transaction("Reservation Canceled", 
+							"Event: " + userEvent.getEventName()));
 					break;
 				} else {
 					System.out.println("Invalid ID entered. Event does not exist.\n");
@@ -252,6 +264,15 @@ public class Client extends User {
 		} else {
 			System.out.println("There are no events scheduled. Please create one first.\n");
 		}
-			
+	}
+
+	public void ViewHistory() {
+		System.out.println("=== History ===");
+		System.out.println("Client: " + this.getUsername());
+		for (Transaction transaction : this.getTransactionHistory()) {
+			System.out.println("Type: " + transaction.getType() + 
+					", Description: " + transaction.getDescription());
+		}
+		System.out.println();
 	}
 }
