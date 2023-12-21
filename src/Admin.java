@@ -30,7 +30,9 @@ public class Admin extends User {
     }
 
     public void DisplayAllEventInfo(ArrayList<Event> events) {
-
+    	for (Event userEvent : events) {
+    		userEvent.DisplayEventInfo();
+    	}
     }
 
     public void DeleteEvent(int eventId) {

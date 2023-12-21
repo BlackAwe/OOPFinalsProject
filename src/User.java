@@ -11,7 +11,7 @@ public class User {
 		this.password = password;
 	}
 	// getters and setters
-	public String userName() {
+	public String getUsername() {
 		return this.userName;
 	}
 	
@@ -49,7 +49,7 @@ public class User {
 	}
 	
 	// Method to display details or information of user
-	public void DisplayDetails() {
+	public void DisplayUserDetails() {
 	    System.out.println("\\nUser Details:");
 	    System.out.println("Username: " + this.userName);
 	}

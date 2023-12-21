@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Event {
 	// class fields
+	private static int lastEventId;
 	private int eventId;
 	private String eventName;
 	private String eventType;
@@ -12,9 +13,9 @@ public class Event {
 	private String status;
 	
 	// constructor
-	public Event(int eventId, String eventName, String eventType, String dateAndTime,  
+	public Event(String eventName, String eventType, String dateAndTime,  
 			String venue, int noOfParticipants, String description) {
-		this.eventId = eventId;
+		this.eventId = ++lastEventId;
 		this.eventName = eventName;
 		this.eventType = eventType;
 		this.dateAndTime = dateAndTime;
@@ -80,10 +81,6 @@ public class Event {
 	}
 	
 	// METHODS
-	public void CreateEvent() { // up to the user in how the event is created
-		
-	}
-	
 	public void DisplayEventInfo() {
 		System.out.println(this.getEventName());
 		System.out.println("Event Type:" + this.getType());
@@ -94,56 +91,7 @@ public class Event {
 		System.out.println("Event Status: " + this.getStatus());
 	}
 	
-	public void UpdateEvent() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("What would you like to update?");
-        System.out.println("1. Event Name");
-        System.out.println("2. Event Type");
-        System.out.println("3. Date and Time");
-        System.out.println("4. Venue");
-        System.out.println("5. Number of Participants");
-        System.out.println("6. Description");
-        System.out.print("Enter your choice (1-6): ");
-
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-
-        switch (choice) {
-            case 1:
-                System.out.print("Enter new event name: ");
-                String newEventName = scanner.nextLine();
-                this.setName(newEventName);
-                break;
-            case 2:
-                System.out.print("Enter new event type: ");
-                String newEventType = scanner.nextLine();
-                this.setType(newEventType);
-                break;
-            case 3:
-                System.out.print("Enter new date and time: ");
-                String newDateAndTime = scanner.nextLine();
-                this.setDate(newDateAndTime);
-                break;
-            case 4:
-                System.out.print("Enter new venue: ");
-                String newVenue = scanner.nextLine();
-                this.setVenue(newVenue);
-                break;
-            case 5:
-                System.out.print("Enter new number of participants: ");
-                int newNoOfParticipants = scanner.nextInt();
-                this.setParticipants(newNoOfParticipants);
-                break;
-            case 6:
-                System.out.print("Enter new description: ");
-                String newDescription = scanner.nextLine();
-                this.setDescription(newDescription);
-                break;
-            default:
-                System.out.println("Invalid choice");
-        }
-        System.out.println("Event details updated successfully!");
-    }
+	
 	
 	public void CancelEvent() {
 		
