@@ -7,6 +7,11 @@ public class UserManager {
 	private List<User> userList = new ArrayList<User>();
 	static Admin admin = new Admin("admin");
 	
+	// getters and setters
+	public List<User> getUserList(){
+		return this.userList;
+	}
+	
 	// METHODS
 	// Method to handle signing up
 	public void SignUp(Scanner scanner) {
@@ -70,5 +75,12 @@ public class UserManager {
         } else {
         	return null;
         }
+	}
+	
+	public void DisplayUserList() {
+		for (User user : this.userList) {
+			System.out.println("User ID: " + ((Client) user).getId() + 
+					" || Username: " + ((Client) user).getUsername());
+		}
 	}
 }

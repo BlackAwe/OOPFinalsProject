@@ -1,7 +1,7 @@
 
 public class Event {
 	// class fields
-	private static int lastEventId;
+	private static int lastEventId = 200;
 	private int eventId;
 	private String eventName;
 	private String eventType;
@@ -91,7 +91,7 @@ public class Event {
 		System.out.println("\n=== Event Details ===");
 		System.out.println(this.getEventName());
 		System.out.println("Event ID: " + this.getEventId());
-		System.out.println("Event Type:" + this.getType());
+		System.out.println("Event Type: "  + this.getType());
 		System.out.println("Event Venue: " + this.getVenue());
 		System.out.println("Date and Time: " + this.getDate());
 		System.out.println("Number of Participants: " + this.getParticipants());
