@@ -11,6 +11,7 @@ public class Client extends User {
 	private String address;
 	private String contactInfo;
 	private List<Event> eventList = new ArrayList<Event>();
+	private List<Transaction> transactionHistory = new ArrayList<Transaction>();
 
 	// constructor
 	public Client(String userName, String password, String name, String address, String email, String contactInfo) {
@@ -41,6 +42,10 @@ public class Client extends User {
 
 	public String getContactInfo() {
 		return this.contactInfo;
+	}
+
+	public List<Transaction> getTransactionHistory() {
+		return this.transactionHistory;
 	}
 
 	public void setName(String name) {
@@ -89,10 +94,10 @@ public class Client extends User {
 		System.out.println("These are the events that you have scheduled:");
 		if (this.eventList == null) {
 			System.out.println("There is no scheduled events yet.");
-		} else if (this.eventList!= null){
+		} else if (this.eventList != null) {
 			for (Event userEvent : this.eventList) {
-				System.out.println("Event ID: " + userEvent.getEventId() + 
-						" || Event Name: " + userEvent.getEventName());
+				System.out
+						.println("Event ID: " + userEvent.getEventId() + " || Event Name: " + userEvent.getEventName());
 			}
 		}
 	}
@@ -156,7 +161,7 @@ public class Client extends User {
 			for (Event userEvent : this.eventList) {
 				System.out.println("Please enter the ID of the event you want to update: ");
 				int selectedEventId = scanner.nextInt();
-				
+
 				if (userEvent.getEventId() == selectedEventId) {
 					System.out.println("What would you like to update?");
 					System.out.println("1. Event Name");
@@ -210,7 +215,7 @@ public class Client extends User {
 				}
 				break;
 			}
-		} 
+		}
 	}
 
 	public void ReserveEvent() {
@@ -232,7 +237,7 @@ public class Client extends User {
 					System.out.println("Invalid ID. Event does not exist.\n");
 				}
 			}
-		}		
+		}
 	}
 
 	public void CancelEvent() {
@@ -252,6 +257,16 @@ public class Client extends User {
 		} else {
 			System.out.println("There are no events scheduled. Please create one first.\n");
 		}
-			
+	}
+
+	public void ViewHistory(ArrayList<Client> clients) {
+		System.out.println("=== History ===");
+		for (Client client : clients) {
+			System.out.println("Client: " + client.getUsername());
+			for (Transaction transaction : client.getTransactionHistory()) {
+				System.out.println("Type: " + transaction.getType() + ", Description: " + transaction.getDescription());
+			}
+			System.out.println();
+		}
 	}
 }
