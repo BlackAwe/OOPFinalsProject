@@ -49,7 +49,7 @@ public class User {
 	}
 	
 	// Method to display details or information of user
-	public void DisplayDetails() {
+	public void DisplayUserDetails() {
 	    System.out.println("\\nUser Details:");
 	    System.out.println("Username: " + this.userName);
 	}

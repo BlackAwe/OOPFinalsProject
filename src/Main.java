@@ -20,10 +20,7 @@ public class Main {
                 	
                     break;
                 case 2:
-                    // Implement Log-In Logic
-                    // Prompt user for credentials and verify them
-                    // Set isLoggedIn to true upon successful login
-                    // ...
+                    
                     break;
                 case 3:
                     System.out.println("Exiting the system. Goodbye!");

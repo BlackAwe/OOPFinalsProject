@@ -83,8 +83,15 @@ public class Client extends User{
         this.eventList.add(event);
     }
 	
+	public void DisplayScheduledEvents() {
+		for (Event userEvent : this.eventList) {
+			userEvent.DisplayEventInfo();
+			System.out.println();
+		}
+	}
+	
 	@Override
-	public void DisplayDetails() {
+	public void DisplayUserDetails() {
 		System.out.println("Name: " + this.getName());
 		System.out.println("Address: " + this.getAddress());
 		System.out.println("Email: " + this.getEmail());
