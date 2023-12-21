@@ -43,7 +43,11 @@ public class Client extends User {
 	public String getContactInfo() {
 		return this.contactInfo;
 	}
-
+	
+	public List<Event> getEventsList() {
+		return this.eventList;
+	}
+	
 	public List<Transaction> getTransactionHistory() {
 		return this.transactionHistory;
 	}
@@ -286,4 +290,6 @@ public class Client extends User {
 		}
 		System.out.println();
 	}
+
+	
 }

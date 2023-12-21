@@ -71,4 +71,11 @@ public class UserManager {
         	return null;
         }
 	}
+	
+	public void DisplayAllUsersAllDetails() {
+		for (User user : this.userList) {
+			((Client) user).DisplayUserDetails();
+			((Client) user).DisplayEventList();
+		}
+	}
 }

@@ -104,13 +104,11 @@ public class Main {
     		System.out.println("Login successful! Welcome, " + loggedInAdmin.getUsername() + "!");
             while (true) {
                 System.out.println("\nManage Client Events:");
-                System.out.println("1. ");
-                System.out.println("2. ");
-                System.out.println("3. ");
-                System.out.println("4. ");
-                System.out.println("5. ");
-                System.out.println("6. ");
-                System.out.println("7. Log Out");
+                System.out.println("1. Confirm Event");
+                System.out.println("2. Search Event");
+                System.out.println("3. Display All Events");
+                System.out.println("4. Delete Event");
+                System.out.println("5. Log Out");
                 System.out.print("Enter your choice: ");
                 
                 int userChoice = scanner.nextInt();
@@ -125,11 +123,7 @@ public class Main {
                 		break;
                 	case 4: 
                 		break;
-                	case 5: 
-                		break;
-                	case 6: 
-                		break;
-                    case 7:
+                    case 5:
                         loggedInAdmin = null; // Log out by setting loggedInUser to null
                         break;
                     default:

@@ -12,6 +12,31 @@ public class Admin extends User {
 	}
 	
 	// METHODS
+	public Event GetUserEventById(List<User> userList, int userId, int eventId) {
+        // Search for the user by ID in the userList
+        User selectedUser = null;
+        for (User user : userList) {
+            if (((Client) user).getId() == userId) {
+                selectedUser = user;
+                break;
+            }
+        }
+
+        // If the user with the specified ID is found
+        if (selectedUser != null) {
+            // Retrieve eventsList of the selected user (assuming eventsList is accessible)
+            List<Event> eventsList = ((Client) selectedUser).getEventsList();
+
+            // Search for the event by ID in the user's eventsList
+            for (Event event : eventsList) {
+                if (event.getEventId() == eventId) {
+                    return event; // Return the event if found
+                }
+            }
+        }
+        return null; // Return null if user or event is not found
+    }
+	
 	// Method to confirm and officially reserve the event
 	 public void ConfirmEvent(ArrayList<Event> events, int eventId) {
 	        // Implement event confirmation logic
@@ -31,20 +56,8 @@ public class Admin extends User {
 	        }
 	}
     
-    public void SearchEvent(ArrayList<Event> events, int eventId) {
-        boolean eventFound = false;
-
-        for (Event event : events) {
-            if (event.getEventId() == eventId) {
-                eventFound = true;
-                DisplayEventInfo(event); // Call the existing DisplayEventInfo method
-                break;
-            }
-        }
-
-        if (!eventFound) {
-            System.out.println("Event with ID " + eventId + " not found.");
-        }
+    public void SearchEvent() {
+        
     }
     
     public void DisplayEventInfo(Event event) {
