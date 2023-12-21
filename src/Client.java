@@ -66,17 +66,18 @@ public class Client extends User{
 		
         System.out.println("\nCreate an Event.");
         System.out.print("Enter Event Name: ");
-        String eventName = scanner.next();
+        String eventName = scanner.nextLine();
         System.out.print("Enter Type of Event: ");
-        String eventType = scanner.next();
+        String eventType = scanner.nextLine();
         System.out.print("Enter Date and Time: ");
-        String dateAndTime = scanner.next();
+        String dateAndTime = scanner.nextLine();
         System.out.print("Enter Venue: ");
-        String venue = scanner.next();
+        String venue = scanner.nextLine();
         System.out.print("Enter Number of Participants: ");
         int numOfParticipants = scanner.nextInt();
+        scanner.nextLine(); 
         System.out.print("Enter Description: ");
-        String description = scanner.next();    
+        String description = scanner.nextLine();    
 
         Event event = new Event(eventName, eventType, dateAndTime, 
         		venue, numOfParticipants, description);
