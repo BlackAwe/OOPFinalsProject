@@ -51,12 +51,16 @@ public class Main {
                 
                 switch (userChoice) {
                 	case 1:
+                		((Client) loggedInUser).CreateEvent();
                 		break;
                 	case 2:
+                		((Client) loggedInUser).DisplayScheduledEvents();
                 		break;
                 	case 3:
+                		((Client) loggedInUser).ReserveEvent();
                 		break;
                 	case 4: 
+                		((Client) loggedInUser).CancelEvent();
                 		break;
                     case 5:
                         loggedInUser = null; // Log out by setting loggedInUser to null

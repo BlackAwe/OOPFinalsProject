@@ -138,4 +138,12 @@ public class Client extends User{
 	        }
 	        System.out.println("Client details updated successfully!");
 	}
+	
+	public void ReserveEvent() {
+		
+	}
+	
+	public void CancelEvent() {
+		
+	}
 }
