@@ -107,7 +107,7 @@ public class Main {
                 System.out.println("1. Confirm Event");
                 System.out.println("2. Search Event");
                 System.out.println("3. Display All Events");
-                System.out.println("4. Delete Event");
+                System.out.println("4. Void Event");
                 System.out.println("5. Log Out");
                 System.out.print("Enter your choice: ");
                 
@@ -116,6 +116,7 @@ public class Main {
                 
                 switch (userChoice) {
                 	case 1:
+                		
                 		break;
                 	case 2:
                 		break;

@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Admin extends User {
 	// class fields
-	private List<Event> reservedEvents = new ArrayList<Event>();
 	private static final String DEFAULT_PASSWORD = "admin123";
 	
 	// constructor
@@ -12,11 +11,14 @@ public class Admin extends User {
 	}
 	
 	// METHODS
-	public Event GetUserEventById(List<User> userList, int userId, int eventId) {
+	public Event GetUserEventById(List<User> userList) {
         // Search for the user by ID in the userList
         User selectedUser = null;
+        
+        System.out.print("Enter the User ID: ");
+        int selectedUserId = scanner.nextInt();
         for (User user : userList) {
-            if (((Client) user).getId() == userId) {
+            if (((Client) user).getId() == selectedUserId) {
                 selectedUser = user;
                 break;
             }
@@ -24,12 +26,13 @@ public class Admin extends User {
 
         // If the user with the specified ID is found
         if (selectedUser != null) {
+        	 System.out.print("Enter the event id ID: ");
+             int selectedEventId = scanner.nextInt();
             // Retrieve eventsList of the selected user (assuming eventsList is accessible)
             List<Event> eventsList = ((Client) selectedUser).getEventsList();
-
             // Search for the event by ID in the user's eventsList
             for (Event event : eventsList) {
-                if (event.getEventId() == eventId) {
+                if (event.getEventId() == selectedEventId) {
                     return event; // Return the event if found
                 }
             }
@@ -38,50 +41,56 @@ public class Admin extends User {
     }
 	
 	// Method to confirm and officially reserve the event
-	 public void ConfirmEvent(ArrayList<Event> events, int eventId) {
-	        // Implement event confirmation logic
-		 boolean eventConfirmed = false;
-
-		 for(Event event: events) { //Iterate through the list of events to find the specified event by its ID
-			 if(event.getEventId() == eventId){
-				 //Updating the event status to Confirmed, if found
-				 event.setStatus("Confirmed");
-				 eventConfirmed = true;
-				 System.out.println("Event " + eventId + " has been confirmed and officially reserved. ");
-				 break;
-				 }
-			}
-	        if(!eventConfirmed) {
-	            System.out.println("Event with ID " + eventId + "not found or cannot be confirmed. ");
-	        }
+	 public void ConfirmEvent(List<User> userList) {
+		 Event selectedUserEvent = this.GetUserEventById(userList);
+		 selectedUserEvent.setStatus("Confirmed");
+		 System.out.println("Event " + selectedUserEvent.getEventName() + " with the id" +
+				 selectedUserEvent.getEventId() + " has been confirmed and officially reserved. ");
 	}
     
-    public void SearchEvent() {
+	public void SearchAndDisplayEvent(List<User> userList) {
+		 // Search for the user by ID in the userList
+        User selectedUser = null;
         
-    }
-    
-    public void DisplayEventInfo(Event event) {
-        System.out.println("=== Event Details ===");
-        System.out.println("Event ID: " + event.getEventId());
-        System.out.println("Event Name: " + event.getEventName());
-        System.out.println("Event Type: " + event.getType());
-        System.out.println("Event Date and Time: " + event.getDate());
-        System.out.println("Event Venue: " + event.getVenue());
-        System.out.println("Participants: " + event.getParticipants());
-        System.out.println("Description: " + event.getDescription());
-        System.out.println("Event Status: " + event.getStatus()); // With status to enable confirmation
-        System.out.println("=====================");
-    }
+        System.out.print("Enter the User ID: ");
+        int selectedUserId = scanner.nextInt();
+        for (User user : userList) {
+            if (((Client) user).getId() == selectedUserId) {
+                selectedUser = user;
+                break;
+            }
+        }
 
-    public void DisplayAllEventInfo(ArrayList<Event> events) {
-    	for (Event userEvent : events) {
-    		userEvent.DisplayEventInfo();
-    	}
-    }
-
-    public void DeleteEvent(int eventId) {
-        // Implement event deletion logic
+        // If the user with the specified ID is found
+        if (selectedUser != null) {
+        	 System.out.print("Enter the event id ID: ");
+             int selectedEventId = scanner.nextInt();
+            // Retrieve eventsList of the selected user (assuming eventsList is accessible)
+            List<Event> eventsList = ((Client) selectedUser).getEventsList();
+            // Search for the event by ID in the user's eventsList
+            for (Event event : eventsList) {
+                if (event.getEventId() == selectedEventId) {
+                    event.DisplayEventInfo();
+                }
+            }
+        }
+	}
+	
+    public void DisplayAllEventInfo(List<User> userList) {
+    	System.out.println("List of Client Events: ");
+    	System.out.println("========================");
+    	for (User user : userList) {
+    		System.out.println("Here are the events of the user: " + ((Client) user).getName());
+    		for (Event event : ((Client) user).getEventsList()) {
+    			event.DisplayEventInfo();
+    		}
+        }
     }
     
-    
+    public void VoidEvent(List<User> userList) {
+		 Event selectedUserEvent = this.GetUserEventById(userList);
+		 selectedUserEvent.setStatus("Voided");
+		 System.out.println("Event " + selectedUserEvent.getEventName() + " with the id" +
+				 selectedUserEvent.getEventId() + " has been voided. Event is not available for reservation. ");
+	}
 }
