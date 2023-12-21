@@ -83,7 +83,7 @@ public class Event {
 	// METHODS
 	public void DisplayEventInfo() {
 		System.out.println(this.getEventName());
-		System.out.println("Event ID:" + this.getEventId());
+		System.out.println("Event ID: " + this.getEventId());
 		System.out.println("Event Type:" + this.getType());
 		System.out.println("Event Venue: " + this.getVenue());
 		System.out.println("Date and Time: " + this.getDate());

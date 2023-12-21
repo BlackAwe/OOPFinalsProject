@@ -80,11 +80,23 @@ public class Client extends User {
 		this.eventList.add(event);
 		System.out.println("A new event has been scheduled");
 	}
-	
+
 	public void SearchEvent(int selectedEventId) {
-		
+
 	}
-	
+
+	public void DisplayEventList() {
+		System.out.println("These are the events that you have scheduled:");
+		if (this.eventList == null) {
+			System.out.println("There is no scheduled events yet.");
+		} else if (this.eventList!= null){
+			for (Event userEvent : this.eventList) {
+				System.out.println("Event ID: " + userEvent.getEventId() + 
+						" || Event Name: " + userEvent.getEventName());
+			}
+		}
+	}
+
 	public void DisplayScheduledEvents() {
 		for (Event userEvent : this.eventList) {
 			userEvent.DisplayEventInfo();
@@ -103,7 +115,7 @@ public class Client extends User {
 
 	@Override
 	public void UpdateUserDetails() {
-		System.out.println("What would you like to update?");
+		System.out.println("\nWhat would you like to update?");
 		System.out.println("1. Client Name");
 		System.out.println("2. Address");
 		System.out.println("3. Email");
@@ -137,64 +149,70 @@ public class Client extends User {
 		default:
 			System.out.println("Invalid choice");
 		}
-		System.out.println("Client details updated successfully!");
+		System.out.println("\nClient details updated successfully!");
 	}
 
-	public void UpdateEvent(int selectedEventId) {
-		for (Event userEvent : this.eventList) {
-			if (userEvent.getEventId() == selectedEventId) {
-				System.out.println("What would you like to update?");
-				System.out.println("1. Event Name");
-				System.out.println("2. Event Type");
-				System.out.println("3. Date and Time");
-				System.out.println("4. Venue");
-				System.out.println("5. Number of Participants");
-				System.out.println("6. Description");
-				System.out.print("Enter your choice (1-6): ");
+	public void UpdateEvent() {
+		if (this.eventList != null) {
+			for (Event userEvent : this.eventList) {
+				System.out.println("Please enter the ID of the event you want to update: ");
+				int selectedEventId = scanner.nextInt();
+				
+				if (userEvent.getEventId() == selectedEventId) {
+					System.out.println("What would you like to update?");
+					System.out.println("1. Event Name");
+					System.out.println("2. Event Type");
+					System.out.println("3. Date and Time");
+					System.out.println("4. Venue");
+					System.out.println("5. Number of Participants");
+					System.out.println("6. Description");
+					System.out.print("Enter your choice (1-6): ");
 
-				int choice = scanner.nextInt();
-				scanner.nextLine(); // Consume newline
+					int choice = scanner.nextInt();
+					scanner.nextLine(); // Consume newline
 
-				switch (choice) {
-				case 1:
-					System.out.print("Enter new event name: ");
-					String newEventName = scanner.nextLine();
-					userEvent.setName(newEventName);
-					break;
-				case 2:
-					System.out.print("Enter new event type: ");
-					String newEventType = scanner.nextLine();
-					userEvent.setType(newEventType);
-					break;
-				case 3:
-					System.out.print("Enter new date and time: ");
-					String newDateAndTime = scanner.nextLine();
-					userEvent.setDate(newDateAndTime);
-					break;
-				case 4:
-					System.out.print("Enter new venue: ");
-					String newVenue = scanner.nextLine();
-					userEvent.setVenue(newVenue);
-					break;
-				case 5:
-					System.out.print("Enter new number of participants: ");
-					int newNoOfParticipants = scanner.nextInt();
-					userEvent.setParticipants(newNoOfParticipants);
-					break;
-				case 6:
-					System.out.print("Enter new description: ");
-					String newDescription = scanner.nextLine();
-					userEvent.setDescription(newDescription);
-					break;
-				default:
-					System.out.println("Invalid choice");
+					switch (choice) {
+					case 1:
+						System.out.print("Enter new event name: ");
+						String newEventName = scanner.nextLine();
+						userEvent.setName(newEventName);
+						break;
+					case 2:
+						System.out.print("Enter new event type: ");
+						String newEventType = scanner.nextLine();
+						userEvent.setType(newEventType);
+						break;
+					case 3:
+						System.out.print("Enter new date and time: ");
+						String newDateAndTime = scanner.nextLine();
+						userEvent.setDate(newDateAndTime);
+						break;
+					case 4:
+						System.out.print("Enter new venue: ");
+						String newVenue = scanner.nextLine();
+						userEvent.setVenue(newVenue);
+						break;
+					case 5:
+						System.out.print("Enter new number of participants: ");
+						int newNoOfParticipants = scanner.nextInt();
+						userEvent.setParticipants(newNoOfParticipants);
+						break;
+					case 6:
+						System.out.print("Enter new description: ");
+						String newDescription = scanner.nextLine();
+						userEvent.setDescription(newDescription);
+						break;
+					default:
+						System.out.println("Invalid choice");
+					}
+					System.out.println("Event details updated successfully!\n");
+				} else {
+					System.out.println("ID not found. Event does not exist.\n");
 				}
-				System.out.println("Event details updated successfully!");
-			} else {
-				System.out.println("The event does not exist");
+				break;
 			}
-			break;
 		}
+		
 	}
 
 	public void ReserveEvent() {
