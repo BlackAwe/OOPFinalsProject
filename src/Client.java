@@ -61,8 +61,6 @@ public class Client extends User {
 
 	// METHODS
 	public void CreateEvent() { // up to the user in how the event is created
-		Scanner scanner = new Scanner(System.in);
-
 		System.out.println("\nCreate an Event.");
 		System.out.print("Enter Event Name: ");
 		String eventName = scanner.nextLine();
@@ -80,8 +78,13 @@ public class Client extends User {
 
 		Event event = new Event(eventName, eventType, dateAndTime, venue, numOfParticipants, description);
 		this.eventList.add(event);
+		System.out.println("A new event has been scheduled");
 	}
-
+	
+	public void SearchEvent(int selectedEventId) {
+		
+	}
+	
 	public void DisplayScheduledEvents() {
 		for (Event userEvent : this.eventList) {
 			userEvent.DisplayEventInfo();
@@ -100,7 +103,6 @@ public class Client extends User {
 
 	@Override
 	public void UpdateUserDetails() {
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("What would you like to update?");
 		System.out.println("1. Client Name");
 		System.out.println("2. Address");
@@ -139,8 +141,6 @@ public class Client extends User {
 	}
 
 	public void UpdateEvent(int selectedEventId) {
-		Scanner scanner = new Scanner(System.in);
-
 		for (Event userEvent : this.eventList) {
 			if (userEvent.getEventId() == selectedEventId) {
 				System.out.println("What would you like to update?");
