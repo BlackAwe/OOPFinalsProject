@@ -36,8 +36,8 @@ public class UserManager {
 	}
 	
 	// Method to handle users logging in
-	public boolean LogIn(Scanner scanner) {
-        System.out.print("Enter username: ");
+	public User LogIn(Scanner scanner) {
+        System.out.print("\nEnter username: ");
         String username = scanner.nextLine();
 
         System.out.print("Enter password: ");
@@ -55,10 +55,10 @@ public class UserManager {
 
         if (foundUser != null && foundUser.getPassword().equals(password)) {
             System.out.println("Login successful!");
-            return true;
+            return foundUser;
         } else {
             System.out.println("Invalid username or password. Please try again.");
-            return false;
+            return null;
         }
     }
 }
