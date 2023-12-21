@@ -54,10 +54,8 @@ public class UserManager {
         }
 
         if (foundUser != null && foundUser.getPassword().equals(password)) {
-            System.out.println("Login successful!");
             return foundUser;
         } else {
-            System.out.println("Invalid username or password. Please try again.");
             return null;
         }
     }

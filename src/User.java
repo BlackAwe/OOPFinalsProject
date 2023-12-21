@@ -4,6 +4,7 @@ public class User {
 	// class fields
 	private String userName;
 	private String password;
+	protected static Scanner scanner = new Scanner(System.in);
 	
 	// constructor
 	public User(String userName, String password) {
@@ -29,17 +30,6 @@ public class User {
 	
 	// METHODS
 	//Compares the entered userName and password with the stored values
-
-	public boolean LogIn(String userName, String password) {
-		if(userName.equals(this.userName) && password.equals(this.password)) {
-			System.out.println("Login successful.");
-			return true; //Returns true if the user successfully logged in
-		} else {
-			System.out.println("Please try again. Invalid username or password");
-			return false; //Returns false if the user fails to login
-		}
-	}
-	
 	public void UpdateUserDetails() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter new username: ");

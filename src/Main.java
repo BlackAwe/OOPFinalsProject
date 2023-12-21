@@ -7,7 +7,7 @@ public class Main {
         User loggedInUser = null;
         
         while (true) {
-            System.out.println("Welcome to the Event Management and Reservation System!");
+            System.out.println("\nWelcome to the Event Management and Reservation System!");
             System.out.println("1. Sign Up");
             System.out.println("2. Log In");
             System.out.println("3. Exit");
@@ -59,15 +59,18 @@ public class Main {
                 		((Client) loggedInUser).DisplayScheduledEvents();
                 		break;
                 	case 3:
+                		((Client) loggedInUser).DisplayEventList();
                 		((Client) loggedInUser).ReserveEvent();
                 		break;
                 	case 4: 
-                		((Client) loggedInUser).UpdateEvent(scanner.nextInt());
+                		((Client) loggedInUser).DisplayEventList();
+                		((Client) loggedInUser).UpdateEvent();
                 		break;
                 	case 5: 
                 		((Client) loggedInUser).UpdateUserDetails();
                 		break;
                 	case 6: 
+                		((Client) loggedInUser).DisplayEventList();
                 		((Client) loggedInUser).CancelEvent();
                 		break;
                     case 7:
