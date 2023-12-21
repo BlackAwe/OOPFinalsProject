@@ -2,41 +2,43 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+	//execution(entry point)
     public static void main(String[] args) {
-    	// instantiating the objects needed
-    	Scanner scanner = new Scanner(System.in);
+    	Scanner scanner = new Scanner(System.in); //for user input
+    	
+    	// instantiating the objects needed    	
     	UserManager userManager = new UserManager();
         User loggedInUser = null;
         User loggedInAdmin = null;
         
         while (true) {
             System.out.println("\nWelcome to the Event Management and Reservation System!");
-            System.out.println("1. Sign Up");
-            System.out.println("2. Log In");
+            System.out.println("1. Customer Sign-up ");
+            System.out.println("2. Customer Log-in");
             System.out.println("3. Admin Login");
             System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
-
             int choice = scanner.nextInt();
             scanner.nextLine(); 
-
-            switch (choice) { // menu managing the sign-up and log-in page
-                case 1:
-                	userManager.SignUp(scanner);
+            
+            // menu managing the sign-up and log-in page
+            switch (choice) { 
+                case 1: 
+                	userManager.SignUpCustomer(scanner);  //Initiates user sign-up process
                     break;
-                case 2:
-                	loggedInUser = userManager.LogInClient(scanner);
-                	Main.EnterClientMenu(loggedInUser, scanner);
+                case 2:               	
+                	loggedInUser = userManager.LogInClient(scanner); //Logs in a client user
+                	Main.EnterClientMenu(loggedInUser, scanner); //Enters the client user menu
                 	break;
-                case 3:
-                	loggedInAdmin = userManager.LogInAdmin(scanner);
+                case 3:                	
+                	loggedInAdmin = userManager.LogInAdmin(scanner);  //Logs in an admin user
                 	Main.EnterAdminMenu(loggedInAdmin, scanner, userManager, userManager.getUserList());
                 	break;
                 case 4:
-                    System.out.println("Exiting the system. Goodbye!");
-                    System.exit(0);
+                    System.out.println("\nExiting the system. Goodbye!");
+                    System.exit(0); //Exits the system
                 default:
-                    System.out.println("Invalid choice. Please enter a valid option.");
+                    System.out.println("\nInvalid choice. Please enter a valid option.");
                     break;
             }
         }
@@ -45,7 +47,8 @@ public class Main {
     // METHODS
     // Method to enter a menu specific for the client
     public static void EnterClientMenu (User loggedInUser, Scanner scanner) {
-    	if (loggedInUser != null) { // if there is a loggedInUser returned, activates the menu
+    	// if there is a loggedInUser returned, activates the menu
+    	if (loggedInUser != null) { 
             System.out.println("Login successful! Welcome, " + loggedInUser.getUsername() + "!");
             while (true) {
                 System.out.println("\nEvent Management Menu:");
@@ -55,35 +58,41 @@ public class Main {
                 System.out.println("4. Update Event");
                 System.out.println("5. Update User Details");
                 System.out.println("6. Cancel Reservation");
-                System.out.println("7. Log Out");
-                System.out.print("Enter your choice: ");
-                
+                System.out.println("7. View History Log");
+                System.out.println("8. Log Out");
+                System.out.print("Enter your choice: ");                
                 int userChoice = scanner.nextInt();
                 scanner.nextLine(); // Consume newline
                 
+                // handle different client actions
                 switch (userChoice) {
-                	case 1:
-                		((Client) loggedInUser).CreateEvent();
+                   	case 1:
+                		((Client) loggedInUser).CreateEvent();  //Client creates an event
                 		break;
                 	case 2:
-                		((Client) loggedInUser).DisplayScheduledEvents();
+                		System.out.println();
+                		((Client) loggedInUser).DisplayScheduledEvents();  //Client views scheduled events
                 		break;
                 	case 3:
-                		((Client) loggedInUser).DisplayEventList();
-                		((Client) loggedInUser).ReserveEvent();
+                		((Client) loggedInUser).DisplayEventList(); //Display available events for reservation
+                		((Client) loggedInUser).ReserveEvent(); //Client reserves an event
                 		break;
                 	case 4: 
-                		((Client) loggedInUser).DisplayEventList();
-                		((Client) loggedInUser).UpdateEvent();
+                		System.out.println();
+                		((Client) loggedInUser).DisplayEventList(); //Display events for updating
+                		((Client) loggedInUser).UpdateEvent(); //Client updates an event
                 		break;
                 	case 5: 
-                		((Client) loggedInUser).UpdateUserDetails();
+                		((Client) loggedInUser).UpdateUserDetails(); //Clients update details
                 		break;
                 	case 6: 
-                		((Client) loggedInUser).DisplayEventList();
-                		((Client) loggedInUser).CancelEvent();
+                		((Client) loggedInUser).DisplayEventList(); //Display for events cancellation
+                		((Client) loggedInUser).CancelEvent(); //Client cancels a reservation
                 		break;
-                    case 7:
+                	case 7:
+                		((Client) loggedInUser).ViewHistory(); //Display user's history log
+                		break;
+                    case 8:
                         loggedInUser = null; // Log out by setting loggedInUser to null
                         break;
                     default:
@@ -100,9 +109,10 @@ public class Main {
         }
     }
     
+    // Method to enter a specific menu for the admin
     public static void EnterAdminMenu(User loggedInAdmin, Scanner scanner,
     			UserManager userManager, List<User> userList) {
-    	if (loggedInAdmin != null) {
+    	if (loggedInAdmin != null) { //Checks if there is a logged-in admin
     		System.out.println("Login successful! Welcome, " + loggedInAdmin.getUsername() + "!");
             while (true) {
                 System.out.println("\nManage Client Events:");
@@ -111,26 +121,25 @@ public class Main {
                 System.out.println("3. Display All Events");
                 System.out.println("4. Void Event");
                 System.out.println("5. Log Out");
-                System.out.print("Enter your choice: ");
-                
+                System.out.print("Enter your choice: ");                
                 int userChoice = scanner.nextInt();
                 scanner.nextLine(); // Consume newline
                 
                 switch (userChoice) {
                 	case 1:
-                		userManager.DisplayUserList();
-                		((Admin) loggedInAdmin).ConfirmEvent(userList);
+                		userManager.DisplayUserList();  //Display list of users
+                		((Admin) loggedInAdmin).ConfirmEvent(userList); //Admin confirms an event
                 		break;
                 	case 2:
-                		userManager.DisplayUserList();
-                		((Admin) loggedInAdmin).SearchAndDisplayEvent(userList);;
+                		userManager.DisplayUserList(); 
+                		((Admin) loggedInAdmin).SearchAndDisplayEvent(userList);; //Admin searches and display an event
                 		break;
                 	case 3:
-                		((Admin) loggedInAdmin).DisplayAllEventInfo(userList);;
+                		((Admin) loggedInAdmin).DisplayAllEventInfo(userList);; //Admin display all event information
                 		break;
                 	case 4: 
                 		userManager.DisplayUserList();
-                		((Admin) loggedInAdmin).VoidEvent(userList);;
+                		((Admin) loggedInAdmin).VoidEvent(userList);; //Admin voids an event 
                 		break;
                     case 5:
                         loggedInAdmin = null; // Log out by setting loggedInUser to null
@@ -149,4 +158,5 @@ public class Main {
         }
     }
 }
+
 

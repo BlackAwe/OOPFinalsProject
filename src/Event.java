@@ -88,7 +88,7 @@ public class Event {
 	// METHODS
 	// Method to display important information of the event
 	public void DisplayEventInfo() {
-		System.out.println("\n=== Event Details ===");
+		System.out.println("=== Event Details ===");
 		System.out.println(this.getEventName());
 		System.out.println("Event ID: " + this.getEventId());
 		System.out.println("Event Type: "  + this.getType());
