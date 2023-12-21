@@ -4,18 +4,32 @@ import java.util.ArrayList;
 public class Admin extends User {
 	// class fields
 	private List<Event> reservedEvents = new ArrayList<Event>();
+	private static final String DEFAULT_PASSWORD = "admin123";
 	
 	// constructor
-	public Admin(String userName, String password) {
-		super(userName = "admin", password = "admin123");
+	public Admin(String userName) {
+		super(userName, DEFAULT_PASSWORD);
 	}
-	
 	
 	// METHODS
 	// Method to confirm and officially reserve the event
-    public void ConfirmEvent() {
-    	
-    }
+	 public void ConfirmEvent(ArrayList<Event> events, int eventId) {
+	        // Implement event confirmation logic
+		 boolean eventConfirmed = false;
+
+		 for(Event event: events) { //Iterate through the list of events to find the specified event by its ID
+			 if(event.getEventId() == eventId){
+				 //Updating the event status to Confirmed, if found
+				 event.setStatus("Confirmed");
+				 eventConfirmed = true;
+				 System.out.println("Event " + eventId + " has been confirmed and officially reserved. ");
+				 break;
+				 }
+			}
+	        if(!eventConfirmed) {
+	            System.out.println("Event with ID " + eventId + "not found or cannot be confirmed. ");
+	        }
+	}
     
     public void SearchEvent(ArrayList<Event> events, int eventId) {
         boolean eventFound = false;

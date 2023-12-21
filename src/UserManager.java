@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class UserManager {
 	// class fields
 	private List<User> userList = new ArrayList<User>();
+	static Admin admin = new Admin("admin");
 	
 	// METHODS
 	// Method to handle signing up
@@ -36,7 +37,7 @@ public class UserManager {
 	}
 	
 	// Method to handle users logging in
-	public User LogIn(Scanner scanner) {
+	public User LogInClient(Scanner scanner) {
         System.out.print("\nEnter username: ");
         String username = scanner.nextLine();
 
@@ -59,4 +60,15 @@ public class UserManager {
             return null;
         }
     }
+	
+	public User LogInAdmin(Scanner scanner) {
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+
+        if (admin.getPassword().equals(password)) {
+        	return admin;
+        } else {
+        	return null;
+        }
+	}
 }
