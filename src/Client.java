@@ -84,6 +84,8 @@ public class Client extends User {
 		Event event = new Event(eventName, eventType, dateAndTime, venue, numOfParticipants, description);
 		this.eventList.add(event);
 		System.out.println("A new event has been scheduled");
+
+		transactionHistory.add(new Transaction("Event Created", "Event: " + eventName));
 	}
 
 	public void SearchEvent(int selectedEventId) {
@@ -96,8 +98,8 @@ public class Client extends User {
 			System.out.println("There is no scheduled events yet.");
 		} else if (this.eventList != null) {
 			for (Event userEvent : this.eventList) {
-				System.out
-						.println("Event ID: " + userEvent.getEventId() + " || Event Name: " + userEvent.getEventName());
+				System.out.println("Event ID: " + userEvent.getEventId() + 
+						" || Event Name: " + userEvent.getEventName());
 			}
 		}
 	}
@@ -213,6 +215,7 @@ public class Client extends User {
 				} else {
 					System.out.println("ID not found. Event does not exist.\n");
 				}
+				transactionHistory.add(new Transaction("Event Updated", "Event: " + userEvent.getEventName()));
 				break;
 			}
 		}
@@ -230,6 +233,8 @@ public class Client extends User {
 					if (userPayment == userEvent.CalculateEventFees()) {
 						System.out.println("The event is now awaiting for confirmation. Thank you");
 						userEvent.setStatus("Awaiting confirmation.");
+						transactionHistory.add(new Transaction("Event Awaiting Reservation", 
+								"Event: " + userEvent.getEventName()));
 					} else {
 						System.out.println("Insufficient amount of payment.");
 					}
@@ -249,6 +254,8 @@ public class Client extends User {
 				if (userEvent.getEventId() == selectedEventId) {
 					this.eventList.remove(userEvent);
 					System.out.println("The scheduled event is deleted successfully");
+					transactionHistory.add(new Transaction("Reservation Canceled", 
+							"Event: " + userEvent.getEventName()));
 					break;
 				} else {
 					System.out.println("Invalid ID entered. Event does not exist.\n");
@@ -259,14 +266,13 @@ public class Client extends User {
 		}
 	}
 
-	public void ViewHistory(ArrayList<Client> clients) {
+	public void ViewHistory() {
 		System.out.println("=== History ===");
-		for (Client client : clients) {
-			System.out.println("Client: " + client.getUsername());
-			for (Transaction transaction : client.getTransactionHistory()) {
-				System.out.println("Type: " + transaction.getType() + ", Description: " + transaction.getDescription());
-			}
-			System.out.println();
+		System.out.println("Client: " + this.getUsername());
+		for (Transaction transaction : this.getTransactionHistory()) {
+			System.out.println("Type: " + transaction.getType() + 
+					", Description: " + transaction.getDescription());
 		}
+		System.out.println();
 	}
 }
