@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -29,7 +30,7 @@ public class Main {
                 	break;
                 case 3:
                 	loggedInAdmin = userManager.LogInAdmin(scanner);
-                	Main.EnterAdminMenu(loggedInAdmin, scanner);
+                	Main.EnterAdminMenu(loggedInAdmin, scanner, userManager, userManager.getUserList());
                 	break;
                 case 4:
                     System.out.println("Exiting the system. Goodbye!");
@@ -99,7 +100,8 @@ public class Main {
         }
     }
     
-    public static void EnterAdminMenu(User loggedInAdmin, Scanner scanner) {
+    public static void EnterAdminMenu(User loggedInAdmin, Scanner scanner,
+    			UserManager userManager, List<User> userList) {
     	if (loggedInAdmin != null) {
     		System.out.println("Login successful! Welcome, " + loggedInAdmin.getUsername() + "!");
             while (true) {
@@ -116,13 +118,19 @@ public class Main {
                 
                 switch (userChoice) {
                 	case 1:
-                		
+                		userManager.DisplayUserList();
+                		((Admin) loggedInAdmin).ConfirmEvent(userList);
                 		break;
                 	case 2:
+                		userManager.DisplayUserList();
+                		((Admin) loggedInAdmin).SearchAndDisplayEvent(userList);;
                 		break;
                 	case 3:
+                		((Admin) loggedInAdmin).DisplayAllEventInfo(userList);;
                 		break;
                 	case 4: 
+                		userManager.DisplayUserList();
+                		((Admin) loggedInAdmin).VoidEvent(userList);;
                 		break;
                     case 5:
                         loggedInAdmin = null; // Log out by setting loggedInUser to null

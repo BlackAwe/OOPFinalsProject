@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Client extends User {
 	// class fields
-	private static int lastClientId = 0;
+	private static int lastClientId = 100;
 	private int id;
 	private String name;
 	private String email;
@@ -237,7 +237,7 @@ public class Client extends User {
 	public void ReserveEvent() {
 		if (this.eventList != null) {
 			for (Event userEvent : this.eventList) {
-				System.out.println("Please enter the ID of the event you want to reserve: ");
+				System.out.print("Please enter the ID of the event you want to reserve: ");
 				int selectedEventId = scanner.nextInt();
 				if (userEvent.getEventId() == selectedEventId) { // if event id found, calculates fees and asks for payment
 					System.out.println("The Event Management fee costs: " + userEvent.CalculateEventFees());
@@ -248,6 +248,7 @@ public class Client extends User {
 						userEvent.setStatus("Awaiting confirmation.");
 						transactionHistory.add(new Transaction("Event Awaiting Reservation", 
 								"Event: " + userEvent.getEventName()));
+						break;
 					} else {
 						System.out.println("Insufficient amount of payment.");
 					}
