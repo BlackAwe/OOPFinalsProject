@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+    	// instantiating the objects needed
     	Scanner scanner = new Scanner(System.in);
     	UserManager userManager = new UserManager();
         User loggedInUser = null;
@@ -14,9 +15,9 @@ public class Main {
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine(); 
 
-            switch (choice) {
+            switch (choice) { // menu managing the sign-up and log-in page
                 case 1:
                 	userManager.SignUp(scanner);
                     break;
@@ -34,8 +35,10 @@ public class Main {
         }
     }
     
+    // METHODS
+    // Method to enter a menu specific for the client
     public static void EnterClientMenu (User loggedInUser, Scanner scanner) {
-    	if (loggedInUser != null) {
+    	if (loggedInUser != null) { // if there is a loggedInUser returned, activates the menu
             System.out.println("Login successful! Welcome, " + loggedInUser.getUsername() + "!");
             while (true) {
                 System.out.println("\nEvent Management Menu:");
