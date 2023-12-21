@@ -22,7 +22,9 @@ public class Event {
 		this.venue = venue;
 		this.noOfParticipants = noOfParticipants;
 		this.description = description;
+		this.status = "Pending for payment";
 	}
+	
 	// getters and setters
 	public int getEventId() {
 		return this.eventId;
@@ -80,8 +82,13 @@ public class Event {
 		this.description = description;
 	}
 	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	// METHODS
 	public void DisplayEventInfo() {
+		System.out.println("=== Event Details ===");
 		System.out.println(this.getEventName());
 		System.out.println("Event ID: " + this.getEventId());
 		System.out.println("Event Type:" + this.getType());
@@ -90,12 +97,11 @@ public class Event {
 		System.out.println("Number of Participants: " + this.getParticipants());
 		System.out.println("Description: " + this.getDescription());
 		System.out.println("Event Status: " + this.getStatus());
+        System.out.println("=====================");
 	}
-	
-	
-	
-	public void CancelEvent() {
 		
+	public int CalculateEventFees() {
+		return this.getParticipants() * 150 + 10000; // 10,000 assuming event cost and 150 per person
 	}
 	
 	public void ViewHistory() {

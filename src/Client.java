@@ -110,7 +110,6 @@ public class Client extends User {
 		System.out.println("Address: " + this.getAddress());
 		System.out.println("Email: " + this.getEmail());
 		System.out.println("Contact Information: " + this.getContactInfo());
-
 	}
 
 	@Override
@@ -216,7 +215,25 @@ public class Client extends User {
 	}
 
 	public void ReserveEvent() {
-
+		if (this.eventList != null) {
+			for (Event userEvent : this.eventList) {
+				System.out.println("Please enter the ID of the event you want to reserve: ");
+				int selectedEventId = scanner.nextInt();
+				if (userEvent.getEventId() == selectedEventId) {
+					System.out.println("The Event Management fee costs: " + userEvent.CalculateEventFees());
+					System.out.print("Please enter the correct amount: ");
+					int userPayment = scanner.nextInt();
+					if (userPayment == userEvent.CalculateEventFees()) {
+						System.out.println("The event is now awaiting for confirmation. Thank you");
+						userEvent.setStatus("Awaiting confirmation.");
+					} else {
+						System.out.println("Insufficient amount of payment.");
+					}
+				} else {
+					System.out.println("ID not found. Event does not exist.\n");
+				}
+			}
+		}		
 	}
 
 	public void CancelEvent() {

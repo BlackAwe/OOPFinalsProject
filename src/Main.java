@@ -63,7 +63,6 @@ public class Main {
                 		break;
                 	case 4: 
                 		((Client) loggedInUser).DisplayEventList();
-                		
                 		((Client) loggedInUser).UpdateEvent();
                 		break;
                 	case 5: 
