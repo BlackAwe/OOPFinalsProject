@@ -15,18 +15,18 @@ public class UserManager {
 
 		System.out.print("Enter password: ");
 		String password = scanner.nextLine();
-		
-        System.out.print("Enter your name: ");
-        String clientName = scanner.next();
-        
-        System.out.print("Enter address: ");
-        String clientAddress = scanner.next();
-        
-        System.out.print("Enter email: ");
-        String clientEmail = scanner.next();
-        
-        System.out.print("Enter contact info: ");
-        String clientContactInfo = scanner.next();
+
+		System.out.print("Enter your name: ");
+		String clientName = scanner.nextLine();
+
+		System.out.print("Enter address: ");
+		String clientAddress = scanner.nextLine();
+
+		System.out.print("Enter email: ");
+		String clientEmail = scanner.nextLine();
+
+		System.out.print("Enter contact info: ");
+		String clientContactInfo = scanner.nextLine();
 
 		User newUser = new Client (username, password, clientName, clientAddress,
 				clientEmail, clientContactInfo);
@@ -36,7 +36,29 @@ public class UserManager {
 	}
 	
 	// Method to handle users logging in
-	public void LogIn() {
-		
-	}
+	public boolean LogIn(Scanner scanner) {
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+
+        User foundUser = null;
+
+        // Search for the user in the list based on the entered username
+        for (User user : userList) {
+            if (user.getUsername().equals(username)) {
+                foundUser = user;
+                break;
+            }
+        }
+
+        if (foundUser != null && foundUser.getPassword().equals(password)) {
+            System.out.println("Login successful!");
+            return true;
+        } else {
+            System.out.println("Invalid username or password. Please try again.");
+            return false;
+        }
+    }
 }

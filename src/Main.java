@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
     	Scanner scanner = new Scanner(System.in);
+    	UserManager userManager = new UserManager();
         boolean isLoggedIn = false;
 
         while (true) {
@@ -17,10 +18,10 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                	
+                	userManager.SignUp(scanner);
                     break;
                 case 2:
-                    
+                	userManager.LogIn(scanner);
                     break;
                 case 3:
                     System.out.println("Exiting the system. Goodbye!");
