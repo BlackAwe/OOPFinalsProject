@@ -29,8 +29,8 @@ public class UserManager {
 		String clientContactInfo = scanner.nextLine();
 
 		User newUser = new Client (username, password, clientName, clientAddress,
-				clientEmail, clientContactInfo);
-		this.userList.add(newUser);
+				clientEmail, clientContactInfo); // instantiates the client object
+		this.userList.add(newUser); // added to the user list
 
 		System.out.println("Sign-up successful! You can now log in.");
 	}
@@ -48,12 +48,12 @@ public class UserManager {
         // Search for the user in the list based on the entered username
         for (User user : userList) {
             if (user.getUsername().equals(username)) {
-                foundUser = user;
+                foundUser = user; // assigns the foundUser with the retrieved user
                 break;
             }
         }
 
-        if (foundUser != null && foundUser.getPassword().equals(password)) {
+        if (foundUser != null && foundUser.getPassword().equals(password)) { // condition handling presence of user and password
             return foundUser;
         } else {
             return null;

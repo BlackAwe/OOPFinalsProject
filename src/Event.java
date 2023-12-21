@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class Event {
 	// class fields
@@ -87,6 +86,7 @@ public class Event {
 	}
 	
 	// METHODS
+	// Method to display important information of the event
 	public void DisplayEventInfo() {
 		System.out.println("\n=== Event Details ===");
 		System.out.println(this.getEventName());
@@ -99,12 +99,10 @@ public class Event {
 		System.out.println("Event Status: " + this.getStatus());
         System.out.println("=====================");
 	}
-		
+	
+	// Method and logic to calculate how much is the expenses for the event
 	public int CalculateEventFees() {
 		return this.getParticipants() * 150 + 10000; // 10,000 assuming event cost and 150 per person
 	}
-	
-	public void ViewHistory() {
-		
-	}
+
 }

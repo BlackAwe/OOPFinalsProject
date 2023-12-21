@@ -65,7 +65,8 @@ public class Client extends User {
 	}
 
 	// METHODS
-	public void CreateEvent() { // up to the user in how the event is created
+	// Method to create an event attached to the cleint
+	public void CreateEvent() { 		
 		System.out.println("\nCreate an Event.");
 		System.out.print("Enter Event Name: ");
 		String eventName = scanner.nextLine();
@@ -80,18 +81,21 @@ public class Client extends User {
 		scanner.nextLine();
 		System.out.print("Enter Description: ");
 		String description = scanner.nextLine();
-
+		
+		// instantiates the event then adds it to the list of object
 		Event event = new Event(eventName, eventType, dateAndTime, venue, numOfParticipants, description);
 		this.eventList.add(event);
 		System.out.println("A new event has been scheduled");
 
-		transactionHistory.add(new Transaction("Event Created", "Event: " + eventName));
+		transactionHistory.add(new Transaction("Event Created", "Event: " + eventName)); // updates the transaction history
 	}
-
+	
+	// Method to search an event and display it
 	public void SearchEvent(int selectedEventId) {
 
 	}
-
+	
+	// Method to display the list with event id and event name present
 	public void DisplayEventList() {
 		System.out.println("These are the events that you have scheduled:");
 		if (this.eventList == null) {
@@ -103,7 +107,8 @@ public class Client extends User {
 			}
 		}
 	}
-
+	
+	// Method to display all the scheduled events of the client
 	public void DisplayScheduledEvents() {
 		for (Event userEvent : this.eventList) {
 			userEvent.DisplayEventInfo();
@@ -112,6 +117,7 @@ public class Client extends User {
 	}
 
 	@Override
+	// Method to display the user's personal information
 	public void DisplayUserDetails() {
 		System.out.println("Name: " + this.getName());
 		System.out.println("Address: " + this.getAddress());
@@ -120,6 +126,7 @@ public class Client extends User {
 	}
 
 	@Override
+	// Method to update the user details, picking through a menu
 	public void UpdateUserDetails() {
 		System.out.println("\nWhat would you like to update?");
 		System.out.println("1. Client Name");
@@ -129,7 +136,7 @@ public class Client extends User {
 		System.out.print("Enter your choice (1-4): ");
 
 		int choice = scanner.nextInt();
-		scanner.nextLine(); // Consume newline
+		scanner.nextLine(); 
 
 		switch (choice) {
 		case 1:
@@ -157,7 +164,8 @@ public class Client extends User {
 		}
 		System.out.println("\nClient details updated successfully!");
 	}
-
+	
+	// Method to update the event details based on the client's liking
 	public void UpdateEvent() {
 		if (this.eventList != null) {
 			for (Event userEvent : this.eventList) {
@@ -175,9 +183,9 @@ public class Client extends User {
 					System.out.print("Enter your choice (1-6): ");
 
 					int choice = scanner.nextInt();
-					scanner.nextLine(); // Consume newline
+					scanner.nextLine(); 
 
-					switch (choice) {
+					switch (choice) { // menu that provides an option and sets value depending on the choice
 					case 1:
 						System.out.print("Enter new event name: ");
 						String newEventName = scanner.nextLine();
@@ -220,13 +228,14 @@ public class Client extends User {
 			}
 		}
 	}
-
+	
+	// Method to change status of an event from scheduled to reserved; confirms the event
 	public void ReserveEvent() {
 		if (this.eventList != null) {
 			for (Event userEvent : this.eventList) {
 				System.out.println("Please enter the ID of the event you want to reserve: ");
 				int selectedEventId = scanner.nextInt();
-				if (userEvent.getEventId() == selectedEventId) {
+				if (userEvent.getEventId() == selectedEventId) { // if event id found, calculates fees and asks for payment
 					System.out.println("The Event Management fee costs: " + userEvent.CalculateEventFees());
 					System.out.print("Please enter the correct amount: ");
 					int userPayment = scanner.nextInt();
@@ -244,7 +253,8 @@ public class Client extends User {
 			}
 		}
 	}
-
+	
+	// Method to cancel and remove events from the scheduled list of objects
 	public void CancelEvent() {
 		if (this.eventList != null) {
 			for (Event userEvent : this.eventList) {
@@ -265,7 +275,8 @@ public class Client extends User {
 			System.out.println("There are no events scheduled. Please create one first.\n");
 		}
 	}
-
+	
+	// Views the history log of user (transaction history)
 	public void ViewHistory() {
 		System.out.println("=== History ===");
 		System.out.println("Client: " + this.getUsername());

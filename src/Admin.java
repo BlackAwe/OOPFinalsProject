@@ -1,21 +1,38 @@
+import java.util.List;
 import java.util.ArrayList;
 
 public class Admin extends User {
 	// class fields
+	private List<Event> reservedEvents = new ArrayList<Event>();
 	
 	// constructor
 	public Admin(String userName, String password) {
-		super(userName, password);
+		super(userName = "admin", password = "admin123");
 	}
-
-	// getters and setters
+	
 	
 	// METHODS
 	// Method to confirm and officially reserve the event
-    public void ConfirmEvent(int eventId) {
-        // Implement event confirmation logic
+    public void ConfirmEvent() {
+    	
     }
+    
+    public void SearchEvent(ArrayList<Event> events, int eventId) {
+        boolean eventFound = false;
 
+        for (Event event : events) {
+            if (event.getEventId() == eventId) {
+                eventFound = true;
+                DisplayEventInfo(event); // Call the existing DisplayEventInfo method
+                break;
+            }
+        }
+
+        if (!eventFound) {
+            System.out.println("Event with ID " + eventId + " not found.");
+        }
+    }
+    
     public void DisplayEventInfo(Event event) {
         System.out.println("=== Event Details ===");
         System.out.println("Event ID: " + event.getEventId());
@@ -39,19 +56,5 @@ public class Admin extends User {
         // Implement event deletion logic
     }
     
-    public void SearchEvent(ArrayList<Event> events, int eventId) {
-        boolean eventFound = false;
-
-        for (Event event : events) {
-            if (event.getEventId() == eventId) {
-                eventFound = true;
-                DisplayEventInfo(event); // Call the existing DisplayEventInfo method
-                break;
-            }
-        }
-
-        if (!eventFound) {
-            System.out.println("Event with ID " + eventId + " not found.");
-        }
-    }
+    
 }
