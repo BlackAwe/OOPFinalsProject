@@ -59,6 +59,7 @@ public class Main {
                 		((Client) loggedInUser).DisplayScheduledEvents();
                 		break;
                 	case 3:
+                		((Client) loggedInUser).DisplayEventList();
                 		((Client) loggedInUser).ReserveEvent();
                 		break;
                 	case 4: 
@@ -69,6 +70,7 @@ public class Main {
                 		((Client) loggedInUser).UpdateUserDetails();
                 		break;
                 	case 6: 
+                		((Client) loggedInUser).DisplayEventList();
                 		((Client) loggedInUser).CancelEvent();
                 		break;
                     case 7:

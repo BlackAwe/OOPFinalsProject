@@ -210,8 +210,7 @@ public class Client extends User {
 				}
 				break;
 			}
-		}
-		
+		} 
 	}
 
 	public void ReserveEvent() {
@@ -230,13 +229,28 @@ public class Client extends User {
 						System.out.println("Insufficient amount of payment.");
 					}
 				} else {
-					System.out.println("ID not found. Event does not exist.\n");
+					System.out.println("Invalid ID. Event does not exist.\n");
 				}
 			}
 		}		
 	}
 
 	public void CancelEvent() {
-
+		if (this.eventList != null) {
+			for (Event userEvent : this.eventList) {
+				System.out.println("NOTE: Confirmed Events are not available for cancellation");
+				System.out.println("Please enter the ID of the event you want to cancel: ");
+				int selectedEventId = scanner.nextInt();
+				if (userEvent.getEventId() == selectedEventId) {
+					this.eventList.remove(userEvent);
+					System.out.println("The scheduled event is deleted successfully");
+				} else {
+					System.out.println("Invalid ID entered. Event does not exist.\n");
+				}
+			}
+		} else {
+			System.out.println("There are no events scheduled. Please create one first.\n");
+		}
+			
 	}
 }
