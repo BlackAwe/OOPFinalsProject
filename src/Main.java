@@ -6,12 +6,14 @@ public class Main {
     	Scanner scanner = new Scanner(System.in);
     	UserManager userManager = new UserManager();
         User loggedInUser = null;
+        User loggedInAdmin = null;
         
         while (true) {
             System.out.println("\nWelcome to the Event Management and Reservation System!");
             System.out.println("1. Sign Up");
             System.out.println("2. Log In");
-            System.out.println("3. Exit");
+            System.out.println("3. Admin Login");
+            System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
@@ -22,10 +24,14 @@ public class Main {
                 	userManager.SignUp(scanner);
                     break;
                 case 2:
-                	loggedInUser = userManager.LogIn(scanner);
+                	loggedInUser = userManager.LogInClient(scanner);
                 	Main.EnterClientMenu(loggedInUser, scanner);
                 	break;
                 case 3:
+                	loggedInAdmin = userManager.LogInAdmin(scanner);
+                	Main.EnterAdminMenu(loggedInAdmin, scanner);
+                	break;
+                case 4:
                     System.out.println("Exiting the system. Goodbye!");
                     System.exit(0);
                 default:
@@ -90,6 +96,53 @@ public class Main {
             }
         } else {
             System.out.println("Login failed. Invalid username or password.");
+        }
+    }
+    
+    public static void EnterAdminMenu(User loggedInAdmin, Scanner scanner) {
+    	if (loggedInAdmin != null) {
+    		System.out.println("Login successful! Welcome, " + loggedInAdmin.getUsername() + "!");
+            while (true) {
+                System.out.println("\nManage Client Events:");
+                System.out.println("1. ");
+                System.out.println("2. ");
+                System.out.println("3. ");
+                System.out.println("4. ");
+                System.out.println("5. ");
+                System.out.println("6. ");
+                System.out.println("7. Log Out");
+                System.out.print("Enter your choice: ");
+                
+                int userChoice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+                
+                switch (userChoice) {
+                	case 1:
+                		break;
+                	case 2:
+                		break;
+                	case 3:
+                		break;
+                	case 4: 
+                		break;
+                	case 5: 
+                		break;
+                	case 6: 
+                		break;
+                    case 7:
+                        loggedInAdmin = null; // Log out by setting loggedInUser to null
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please enter a valid option.");
+                        break;
+                }
+
+                if (loggedInAdmin == null) {
+                    break; // Break from the inner menu loop if logged out
+                }
+            }
+    	} else {
+            System.out.println("Login failed. Invalid password.");
         }
     }
 }

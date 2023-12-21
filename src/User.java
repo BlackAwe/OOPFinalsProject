@@ -11,6 +11,7 @@ public abstract class User {
 		this.userName = userName;
 		this.password = password;
 	}
+	
 	// getters and setters
 	public String getUsername() {
 		return this.userName;
