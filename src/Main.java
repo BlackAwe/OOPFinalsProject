@@ -42,8 +42,10 @@ public class Main {
                 System.out.println("1. Create Event");
                 System.out.println("2. View Events");
                 System.out.println("3. Reserve Event");
-                System.out.println("4. Cancel Reservation");
-                System.out.println("5. Log Out");
+                System.out.println("4. Update Event");
+                System.out.println("5. Update User Details");
+                System.out.println("6. Cancel Reservation");
+                System.out.println("7. Log Out");
                 System.out.print("Enter your choice: ");
                 
                 int userChoice = scanner.nextInt();
@@ -60,9 +62,15 @@ public class Main {
                 		((Client) loggedInUser).ReserveEvent();
                 		break;
                 	case 4: 
+                		((Client) loggedInUser).UpdateEvent(scanner.nextInt());
+                		break;
+                	case 5: 
+                		((Client) loggedInUser).UpdateUserDetails();
+                		break;
+                	case 6: 
                 		((Client) loggedInUser).CancelEvent();
                 		break;
-                    case 5:
+                    case 7:
                         loggedInUser = null; // Log out by setting loggedInUser to null
                         break;
                     default:
