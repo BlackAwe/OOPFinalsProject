@@ -11,7 +11,7 @@ public class Main {
         User loggedInUser = null;
         User loggedInAdmin = null;
         
-        while (true) {
+        while (true) { 
             System.out.println("\nWelcome to the Event Management and Reservation System!");
             System.out.println("1. Customer Sign-up ");
             System.out.println("2. Customer Log-in");
