@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.ArrayList;
 
 public class Admin extends User {
 	// class fields
@@ -26,6 +25,7 @@ public class Admin extends User {
 
 		// If the user with the specified ID is found
 		if (selectedUser != null) {
+			((Client) selectedUser).DisplayEventList();
 			System.out.print("Enter the event ID: ");
 			int selectedEventId = scanner.nextInt();
 			// Retrieve eventsList of the selected user (assuming eventsList is accessible)
@@ -47,7 +47,8 @@ public class Admin extends User {
 		System.out.println("Event " + selectedUserEvent.getEventName() + " with the id "
 				+ selectedUserEvent.getEventId() + " has been confirmed and officially reserved. ");
 	}
-
+	
+	// Method to search for a user and display a specific event present in their list
 	public void SearchAndDisplayEvent(List<User> userList) {
 		// Search for the user by ID in the userList
 		User selectedUser = null;
@@ -63,6 +64,7 @@ public class Admin extends User {
 
 		// If the user with the specified ID is found
 		if (selectedUser != null) {
+			((Client) selectedUser).DisplayEventList();
 			System.out.print("Enter the event id ID: ");
 			int selectedEventId = scanner.nextInt();
 			// Retrieve eventsList of the selected user (assuming eventsList is accessible)
@@ -75,19 +77,21 @@ public class Admin extends User {
 			}
 		}
 	}
-
+	
+	// Method to display all events of every client
 	public void DisplayAllEventInfo(List<User> userList) {
 		System.out.println("List of Client Events: ");
 		System.out.println("========================");
-		for (User user : userList) {
+		for (User user : userList) { // nested for loop to go through list of users and their events list
 			System.out.println("Here are the events of the user: " + ((Client) user).getName());
 			for (Event event : ((Client) user).getEventsList()) {
 				event.DisplayEventInfo();
 			}
 		}
 	}
-
-	public void VoidEvent(List<User> userList) {
+	
+	// Method to set status of selected events to void and not available for reservation
+	public void VoidEvent(List<User> userList) { 
 		Event selectedUserEvent = this.GetUserEventById(userList);
 		selectedUserEvent.setStatus("Voided");
 		System.out.println("Event " + selectedUserEvent.getEventName() + " with the id" + selectedUserEvent.getEventId()

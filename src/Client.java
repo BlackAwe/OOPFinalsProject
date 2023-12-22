@@ -142,7 +142,7 @@ public class Client extends User {
 		int choice = scanner.nextInt();
 		scanner.nextLine(); 
 
-		switch (choice) {
+		switch (choice) { // menu that has choices then sets user information based on input
 		case 1:
 			System.out.print("\nEnter new client name: ");
 			String newEventName = scanner.nextLine();
@@ -276,7 +276,7 @@ public class Client extends User {
 			System.out.println("\nNOTE: Confirmed Events are not available for cancellation");
 			System.out.print("Please enter the ID of the event you want to cancel: ");
 			int selectedEventId = scanner.nextInt();
-			for (Event userEvent : this.eventList) {
+			for (Event userEvent : this.eventList) { // loop handling checking for id
 				if (userEvent.getEventId() == selectedEventId) {
 					this.eventList.remove(userEvent);
 					System.out.println("The scheduled event is deleted successfully");
@@ -294,7 +294,7 @@ public class Client extends User {
 	public void ViewHistory() {
 		System.out.println("=== History ===");
 		System.out.println("Client: " + this.getUsername());
-		for (Transaction transaction : this.getTransactionHistory()) {
+		for (Transaction transaction : this.getTransactionHistory()) { // prints out the activity recorded
 			System.out.println("Type: " + transaction.getType() + 
 					", " + transaction.getDescription());
 		}
